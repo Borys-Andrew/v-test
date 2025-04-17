@@ -6,7 +6,7 @@ export interface Todo {
 }
 
 export interface NewTodo {
+  userId: number;
   title: string;
   completed: boolean;
-  userId: number;
 }
