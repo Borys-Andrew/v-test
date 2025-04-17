@@ -1,3 +1,2 @@
-export * from './queryClient';
-export * from './todoApi';
-export * from './axios';
+export * from './api';
+export * from './todo';

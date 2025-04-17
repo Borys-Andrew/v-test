@@ -1,20 +1,5 @@
-import axios from 'axios';
-import { AppConfig } from '../utils';
-import { Todo } from '../types';
-
-// Create axios instance with default config
-const api = axios.create({
-  baseURL: AppConfig.API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-export interface CreateTodoInput {
-  title: string;
-  completed?: boolean;
-  userId?: number;
-}
+import { NewTodo, Todo } from '../../types';
+import api from '../api/axios';
 
 export const todoApi = {
   getTodos: async ({
@@ -30,11 +15,7 @@ export const todoApi = {
     return response.data;
   },
 
-  createTodo: async ({
-    title,
-    completed = false,
-    userId = 1,
-  }: Partial<Todo>) => {
+  createTodo: async ({ title, completed, userId }: NewTodo) => {
     const response = await api.post('/todos', { title, completed, userId });
     return response.data;
   },
