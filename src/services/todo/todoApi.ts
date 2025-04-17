@@ -1,5 +1,5 @@
 import { NewTodo, Todo } from '../../types';
-import api from '../api/axios';
+import api from '../axios';
 
 export const todoApi = {
   getTodos: async ({

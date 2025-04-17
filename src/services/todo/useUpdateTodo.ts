@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Todo } from '../../types';
 import { toast } from 'sonner';
-import api from '../api/axios';
+import api from '../axios';
 import { QUERY_KEYS } from '../../constant';
 
 export const useUpdateTodo = () => {

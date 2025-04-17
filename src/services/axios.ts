@@ -1,6 +1,5 @@
 import axios from 'axios';
-// import { toast } from 'sonner'; // або будь-який toast
-
+import { toast } from 'sonner';
 const api = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com',
   headers: {
@@ -16,7 +15,7 @@ api.interceptors.response.use(
       status: err?.response?.status,
     };
 
-    // toast.error(customError.message); // 🔥 глобальний toast
+    toast.error(customError.message);
 
     return Promise.reject(customError);
   },
