@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📋 Todo App
 
-## Getting Started
+This project is a simple Todo application built with **Next.js** and integrated with the [**JSONPlaceholder API**](https://jsonplaceholder.typicode.com). It allows users to fetch, display, create, and delete todos in a clean and responsive interface styled with **Tailwind CSS**. The app leverages **React Query** for efficient data fetching and provides a smooth user experience with optimistic updates.
 
-First, run the development server:
+## 🛠️ Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js 15.3.0** - Framework for server-side rendering and static site generation
+- **React 19** - For building the UI with hooks
+- **TypeScript** - For type safety and better developer experience
+- **Tailwind CSS** - For responsive and utility-first styling
+- **React Query (@tanstack/react-query)** - For data fetching and state management
+- **Axios** - For making HTTP requests to the JSONPlaceholder API
+- **Lucide React** - For icons
+- **Sonner** - For toast notifications
+- **Clsx & Tailwind Merge** - For dynamic class management
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 📋 Fetch and display a paginated list of todos from JSONPlaceholder API
+- ➕ Create new todos with a modal form
+- 🗑️ Delete todos
+- 🔢 Pagination controls for navigating through todo pages
+- 📏 Adjustable items per page with a dropdown
+- 🔔 Toast notifications for errors
+- 📱 Responsive design for mobile and desktop
+- 🌟 **Bonus**: React Query for efficient data fetching and caching
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📡 API Endpoints Used
 
-## Learn More
+- **GET** [`https://jsonplaceholder.typicode.com/todos?_page=1&_limit=10`](https://jsonplaceholder.typicode.com/todos?_page=1&_limit=10) - Fetch todos
+- **POST** `https://jsonplaceholder.typicode.com/todos` - Create a new todo
+- **PUTCH** `https://jsonplaceholder.typicode.com/todos/{id}` - Update a todo
+- **DELETE** `https://jsonplaceholder.typicode.com/todos/{id}` - Delete a todo
 
-To learn more about Next.js, take a look at the following resources:
+## 🏃🏼‍♂️ Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Node.js** >= 20 and **npm** (or yarn/pnpm)
+- **Git** for cloning the repository
 
-## Deploy on Vercel
+### Installation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Clone the Repository**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```sh
+    git clone https://github.com/Borys-Andrew/v-test.git
+    cd v-test
+   ```
+
+2. **Install Dependencies**
+
+   ```sh
+    npm install
+   ```
+
+3. **Run the Development Server**
+
+   ```sh
+    npm run dev
+   ```
+
+4. **Access the App**
+
+Open your browser and navigate to: [http://localhost:3000](http://localhost:3000)
+
+## 📞 Contact Information
+
+Feel free to reach out for collaboration or job opportunities!
+
+- 📱 **Phone**: +38-073-100-74-63
+- 📧 **Email**: [borysandrew9@gmail.com](mailto:borysandrew9@gmail.com)
+- 🔗 **LinkedIn**: [Andrew Borys](https://www.linkedin.com/in/andrew-borys-233365200/)
+- 💬 **Telegram**: [@BorysAndrew](https://t.me/BorysAndrew)
+- 💻 **GitHub**: [Andrew-Borys](https://github.com/Andrew-Borys)
+- 🌍 **Location**: Lviv, Ukraine
+- 👨‍💻 Open to work in office, hybrid, or remotely.

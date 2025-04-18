@@ -1,24 +1,22 @@
+'use client';
+
 import { useState } from 'react';
 
 type FormTypes = {
-  onHandleCreateTodo: (data: string) => void;
+  onCreateTodo: (data: string) => void;
   onCancel: () => void;
   isLoading: boolean;
 };
 
-export const TodoForm = ({
-  onHandleCreateTodo,
-  onCancel,
-  isLoading,
-}: FormTypes) => {
+export const TodoForm = ({ onCreateTodo, onCancel, isLoading }: FormTypes) => {
   const [inputText, setInputText] = useState('');
   const isDisabled = isLoading || inputText.length === 0;
 
   return (
-    <div className="w-full h-[70vh] flex items-center justify-center inset-full">
+    <div className="w-full h-screen flex items-center justify-center">
       <form
-        onSubmit={() => onHandleCreateTodo(inputText)}
-        className="flex flex-col gap-5 border border-teal-500 p-4 rounded w-[500px]"
+        onSubmit={() => onCreateTodo(inputText)}
+        className="flex flex-col gap-5 border border-teal-500 p-4 rounded w-[500px] z-50"
       >
         <h1 className="text-3xl underline self-center">Create Todo</h1>
         <input

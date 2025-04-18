@@ -7,24 +7,25 @@ import { TodoItem } from './todoItem';
 type TodoListProps = {
   todos: Todo[];
   className?: string;
+  onUpdateTodo: (data: Todo) => void;
   onDeleteTodo: (id: number) => void;
 };
 
-export const TodoList = ({ todos, className, onDeleteTodo }: TodoListProps) => {
+export const TodoList = ({
+  todos,
+  className,
+  onUpdateTodo,
+  onDeleteTodo,
+}: TodoListProps) => {
   return (
-    <ul
-      className={cn(
-        'flex flex-col gap-2 w-full',
-        //   (isPlaceholderData || isLoading) && 'opacity-50',
-        className,
-      )}
-    >
+    <ul className={cn('flex flex-col gap-2 w-full', className)}>
       {todos.map(({ id, title, completed }) => (
         <TodoItem
           key={id}
           id={id}
           title={title}
           isCompleted={completed}
+          onUpdate={onUpdateTodo}
           onDelete={onDeleteTodo}
         />
       ))}

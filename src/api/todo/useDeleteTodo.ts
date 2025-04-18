@@ -29,11 +29,12 @@ export const useDeleteTodo = () => {
     },
 
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
       toast.success('✅ Todo deleted!');
     },
 
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
-    },
+    // onSettled: () => {
+    //   queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
+    // },
   });
 };

@@ -20,6 +20,19 @@ export const todoApi = {
     return response.data;
   },
 
+  updateTodo: async ({
+    todo,
+    limit,
+    page,
+  }: {
+    todo: Todo;
+    limit: number;
+    page: number;
+  }): Promise<Todo> => {
+    const res = await api.put(`/todos/${todo.id}`, { todo, limit, page });
+    return res.data;
+  },
+
   deleteTodo: async (id: number): Promise<void> => {
     await api.delete(`/todos/${id}`);
   },

@@ -38,11 +38,12 @@ export const useCreateTodo = () => {
     },
 
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
       toast.success('✅ Todo created!');
     },
 
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
-    },
+    // onSettled: () => {
+    //   queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
+    // },
   });
 };

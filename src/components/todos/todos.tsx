@@ -1,33 +1,31 @@
 'use client';
 
-import { useState } from 'react';
-import { PER_PAGE } from './constants';
 import {
   TodoActionPanel,
   TodoForm,
   TodoList,
   TodoPagination,
 } from './components';
-import { useTodos } from '../../api';
 import { toast } from 'sonner';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { useTodos } from './useTodos';
 
 export const Todos = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [page, setPage] = useState<number>(1);
-  const [perPage, setPerPage] = useState<number>(PER_PAGE[5]);
-
-  const { data: todos, error, isLoading } = useTodos({ limit: perPage, page });
-
-  const toggleModal = () => setIsModalOpen((prev) => !prev);
-  const handleSelectPages = (value: number) => setPerPage(value);
-  const handleChangePage = (action: string) => {
-    setPage((p) => (action === '+' ? p + 1 : p - 1));
-  };
-
-  const handleCreateTodo = () => {};
-  const handleDeleteTodo = (id: number) => {
-    console.log('🚀 ~ handleDeleteTodo ~ id:', id);
-  };
+  const {
+    todos,
+    error,
+    isLoading,
+    isPending,
+    isModalOpen,
+    page,
+    perPage,
+    toggleModal,
+    handleSelectPages,
+    handleChangePage,
+    handleCreateTodo,
+    handleUpdateTodo,
+    handleDeleteTodo,
+  } = useTodos();
 
   if (error) {
     toast.error('Failed to load todos');
@@ -35,15 +33,22 @@ export const Todos = () => {
   }
 
   if (isLoading || !todos) {
-    return <p className="text-gray-500">Loading todos...</p>;
+    return (
+      <div className="h-screen w-full flex items-center justify-center">
+        <ClipLoader
+          size={25}
+          color="red"
+        />
+      </div>
+    );
   }
 
   if (isModalOpen) {
     return (
       <TodoForm
-        onHandleCreateTodo={handleCreateTodo}
+        onCreateTodo={handleCreateTodo}
         onCancel={toggleModal}
-        isLoading={false}
+        isLoading={isPending}
       />
     );
   }
@@ -61,12 +66,13 @@ export const Todos = () => {
         <TodoList
           todos={todos}
           className="max-w-[600px]"
+          onUpdateTodo={handleUpdateTodo}
           onDeleteTodo={handleDeleteTodo}
         />
       </div>
       <TodoPagination
         currentPage={page}
-        lastPage={todos.length ? Math.ceil(todos.length / perPage) : 1} // Оновлено для lastPage
+        lastPage={todos.length ? Math.ceil(todos.length / perPage) : 1}
         onHandleChangePage={handleChangePage}
       />
     </div>

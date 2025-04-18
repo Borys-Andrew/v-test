@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { todoApi } from './todoApi';
 import { QUERY_KEYS } from '../../constant';
 
-export const useTodos = ({
+export const useGetTodos = ({
   limit = 10,
   page = 1,
 }: {

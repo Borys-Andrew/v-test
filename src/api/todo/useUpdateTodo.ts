@@ -1,25 +1,32 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Todo } from '../../types';
 import { toast } from 'sonner';
-import api from '../axios';
 import { QUERY_KEYS } from '../../constant';
+import { todoApi } from './todoApi';
 
 export const useUpdateTodo = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (todo: Todo): Promise<Todo> => {
-      const res = await api.put(`/todos/${todo.id}`, todo);
-      return res.data;
-    },
+    mutationFn: ({
+      limit,
+      page,
+      todo,
+    }: {
+      limit: number;
+      page: number;
+      todo: Todo;
+    }) => todoApi.updateTodo({ limit, page, todo }),
 
-    onMutate: async (updatedTodo) => {
-      await queryClient.cancelQueries({ queryKey: [QUERY_KEYS.TODOS] });
+    onMutate: async ({ limit, page, todo: updatedTodo }) => {
+      await queryClient.cancelQueries({
+        queryKey: [QUERY_KEYS.TODOS, limit, page],
+      });
 
       const prevTodos = queryClient.getQueryData<Todo[]>([QUERY_KEYS.TODOS]);
 
       queryClient.setQueryData<Todo[]>(
-        [QUERY_KEYS.TODOS],
+        [QUERY_KEYS.TODOS, limit, page],
         (prevTodos) =>
           prevTodos?.map((todo) =>
             todo.id === updatedTodo.id ? { ...todo, ...updatedTodo } : todo,
@@ -35,11 +42,12 @@ export const useUpdateTodo = () => {
     },
 
     onSuccess: () => {
+      //   queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
       toast.success('✅ Todo updated!');
     },
 
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
-    },
+    // onSettled: () => {
+    //   queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
+    // },
   });
 };
