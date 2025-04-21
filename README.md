@@ -29,7 +29,7 @@ This project is a simple Todo application built with **Next.js** and integrated 
 
 - **GET** [`https://jsonplaceholder.typicode.com/todos?_page=1&_limit=10`](https://jsonplaceholder.typicode.com/todos?_page=1&_limit=10) - Fetch todos
 - **POST** `https://jsonplaceholder.typicode.com/todos` - Create a new todo
-- **PUTCH** `https://jsonplaceholder.typicode.com/todos/{id}` - Update a todo
+- **PATCH** `https://jsonplaceholder.typicode.com/todos/{id}` - Update a todo
 - **DELETE** `https://jsonplaceholder.typicode.com/todos/{id}` - Delete a todo
 
 ## 🏃🏼‍♂️ Getting Started
